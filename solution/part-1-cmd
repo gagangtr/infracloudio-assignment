@@ -1,0 +1,3 @@
+#docker run command which i executed for (6)  
+
+docker run -d -p 8000:80 -p 9393:9300 --name infracloudio_d -e CSVSERVER_BORDER='Orange' -v ${PWD}/inputdata:/csvserver/inputdata -v ${PWD}/gencsv.sh:/csvserver/gencsv.sh -v ${PWD}/inputFile:/csvserver/inputFile infracloudio/csvserver:latest
