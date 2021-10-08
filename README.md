@@ -39,11 +39,11 @@ Part I
 	9, 20128
 	10, 27613
   
-4 docker run -d -p 8000:80 -p 9393:9393 --name infracloudio_d -v ${PWD}/inputdata:/csvserver/inputdata -v ${PWD}/gencsv.sh:/csvserver/gencsv.sh -v ${PWD}/inputFile:/csvserver/inputFile infracloudio/csvserver:latest
+4 docker run -d -p 8000:80 -p 9393:9393 --name CsvServer -v ${PWD}/gencsv.sh:/csvserver/gencsv.sh -v ${PWD}/inputFile:/csvserver/inputdata infracloudio/csvserver:latest
 
 5 netstat -ano | grep LISTEN -> port listening to 9300
 
-6 docker run -d -p 8000:80 -p 9393:9300 --name infracloudio_d -e CSVSERVER_BORDER='Orange' -v ${PWD}/inputdata:/csvserver/inputdata -v ${PWD}/gencsv.sh:/csvserver/gencsv.sh -v ${PWD}/inputFile:/csvserver/inputFile infracloudio/csvserver:latest
+6 docker run -d -p 8000:80 -p 9393:9300 --name CsvServer -e CSVSERVER_BORDER='Orange' -v ${PWD}/gencsv.sh:/csvserver/gencsv.sh -v ${PWD}/inputFile:/csvserver/inputdata infracloudio/csvserver:latest
 
 Part II
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -57,8 +57,7 @@ Part II
 		ports:
 		  - "9393:9300"
 		volumes:
-		  - ./inputFile:/csvserver/inputFile.csv
-		  - ./inputdata:/csvserver/inputdata
+		  - ./inputFile:/csvserver/inputdata
 		image: "infracloudio/csvserver:latest"
 
 
@@ -73,8 +72,7 @@ Part III
 		ports:
 		  - "9393:9300"
 		volumes:
-		  - ./inputFile:/csvserver/inputFile
-		  - ./inputdata:/csvserver/inputdata
+		  - ./inputFile:/csvserver/inputdata
 		image: "infracloudio/csvserver:latest"
 
 	  Prometheus:
