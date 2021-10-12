@@ -1,6 +1,15 @@
 #!/bin/bash
 
-num=10
+if [ $# > 0 ]; then
+  
+	num=$1
+  
+else
+
+      	num=10 
+
+fi
+
 echo"" >inputFile
 
 
